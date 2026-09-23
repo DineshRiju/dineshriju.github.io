@@ -1231,13 +1231,14 @@
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false"><span>Do you have AI datacenter or infrastructure sourcing experience?</span><span class="faq-ic"></span></button>
         <div class="faq-a"><div class="faq-a-in">
-          <p class="lead">Not directly, and I will be straight about that. The commodities behind AI datacenter and infrastructure hardware, though, are the ones I source every day.</p>
+          <p class="lead">Yes, in the ways that matter most. I have not run an AI datacenter program by that name, but I have sourced its building blocks and built real infrastructure that maps directly onto it.</p>
           <ul>
-            <li><strong>Direct adjacency.</strong> Silicon and memory, power modules, PCBAs, interconnect, and Tier 1 contract manufacturing are already my portfolio.</li>
-            <li><strong>Transferable fundamentals.</strong> Strategic sourcing, vendor management, should cost and cost management, supply risk, and program management carry across any commodity.</li>
-            <li><strong>Proven ramp.</strong> I have built supply chains from zero more than once, so picking up a new domain fast is a pattern for me, not a gamble.</li>
+            <li><strong>Infrastructure I have built.</strong> Stood up the supply chain and buildout for autonomous robot fulfillment centers, launching two across Texas and New Jersey. That is hardware and site infrastructure from the ground up.</li>
+            <li><strong>Commodity breadth.</strong> Deep across electronics, electrical, mechanical, and plastics, from silicon, memory, and power modules to PCBAs, harnesses, and machined and molded parts. Datacenter hardware lives in exactly these commodities.</li>
+            <li><strong>Adjacency at scale.</strong> I qualify and hold Tier 1 contract manufacturers accountable, run should cost and cost management, and de risk constrained silicon, the same disciplines compute infrastructure demands.</li>
+            <li><strong>Proven ramp.</strong> I have built supply chains from zero more than once, so a new domain is a fast on ramp, not a gamble.</li>
           </ul>
-          <p>I would come in with strong fundamentals, real adjacency, and genuine drive to master the space quickly.</p>
+          <p>So this is not a from scratch learning curve. It is a strong, directly relevant foundation with a short, focused ramp on the datacenter specifics.</p>
         </div></div>
       </div>
     </div>
@@ -1515,6 +1516,7 @@
       {id:"aiwork",tags:["ai","artificial intelligence","automation","automate","agentic","agent","machine learning","genai","llm","ai tool","ai model","ai cost","how do you use ai","ai workflow","ai enabled"],reply:"Dinesh treats AI as a force multiplier for sourcing, applied where it adds real value. He has built or applied it across a bottoms up should cost model on live market data, data driven supplier scorecards, demand and supply signals shared with vendors, contract review that uses supply chain data and feedback to realign terms and negotiation, procurement automation for RFQ and orders during NPI, and component lifecycle analysis with SiliconExpert. Practical tools that save time and sharpen decisions."},
       {id:"availability",tags:["availab","sponsor","visa","permanent resident","relocat","travel","start date","how soon","when can he start","join","location","based","fremont","notice","citizen","work authorization"],reply:"Logistics are clean. Dinesh is a US Permanent Resident, so no sponsorship is needed. He is based in Fremont, California, open to relocation, comfortable with international and domestic travel including on short notice, and can start about two weeks after an offer."},
       {id:"interesting",tags:["interesting","fun fact","unique","standout","stand out","impressive","cool","something about","remarkable","surprise"],reply:"Here is a good one. Dinesh built a should cost model powered by AI agents that factors live market data and estimates a product's cost from raw material to finished good in real time. Most supply chain leaders read cost models. He built one that thinks. Pair that with three promotions in five years and you get the pace he runs at."},
+      {id:"datacenter",tags:["datacenter","data center","data centre","datacenter experience","data center experience","infrastructure experience","ai infrastructure","compute infrastructure","infrastructure sourcing","gpu","hyperscale"],reply:"Not by that exact name, but closer than it sounds. Dinesh built the supply chain and buildout for autonomous robot fulfillment centers, two of them in Texas and New Jersey, and sources the exact commodities datacenter hardware runs on: silicon, memory, power modules, and PCBAs, plus electrical, mechanical, and plastics. He qualifies Tier 1 contract manufacturers, runs should cost, and de risks constrained silicon. A strong, directly relevant foundation, not a from scratch learning curve."},
       {id:"fit",tags:["why hire","why should we hire","fit","why you","why him","value","what makes","good fit","strong fit","should we hire","strengths"],reply:"Why Dinesh: silicon and constrained supply experience, Tier 1 contract manufacturing accountability, cost you can defend through should cost and an AI model on live data, and a record of building supply chains from zero while rising fast. He is built for hardware at the frontier."},
       {id:"contact",tags:["contact","email","phone","call","linkedin","reach","reach out","how to reach","get in touch","resume","connect","talk to","hire him"],reply:"Want the driver directly? Email dinesh.riju53@gmail.com, call +1 815 508 6616, or connect on LinkedIn. His resume is one click away on this site, and the Contact section at the bottom has every link."},
       {id:"f1",tags:["formula 1","formula one","racing","red bull","pit wall","theme","why f1","checkered","apex"],reply:"Why the F1 theme? Supply chain at the frontier is a race: milliseconds of lead time, tenths of a percent on cost, and a team that must nail every pit stop. Dinesh runs his sourcing with that precision and pace, so a race engineer felt like the right voice. Now, what line shall we take next?"},
@@ -1555,6 +1557,7 @@
       availability:["Why hire Dinesh","Contact","Career highlights"],
       interesting:["Favorite F1 driver","AI tools I built","Why hire Dinesh"],
       fit:["Career highlights","Problem solving","Contact"],
+      datacenter:["Robotics","Should cost models","Why hire Dinesh"],
       contact:["Why hire Dinesh","Career highlights","Something interesting"],
       f1:["Favorite F1 driver","Something interesting","Why hire Dinesh"],
       problemsolving:["Supplier management","Should cost models","Leadership"],
@@ -1601,11 +1604,42 @@
       setTimeout(function(){tb.remove();addMsg(reply,"bot");showChips(chips);},delay);
     }
 
-    function userSend(v){var text=(v!==undefined?v:input.value).trim();if(!text)return;addMsg(text,"user");input.value="";chipsBox.style.display="none";respond(text);}
+    var APEX_ENDPOINT="";  /* paste your Cloudflare Worker URL between the quotes to switch APEX to the AI brain, e.g. https://apex.yourname.workers.dev */
+    var history=[];
+    function aiRespond(text){
+      history.push({role:"user",content:text});
+      var tb=typingBubble(),bubble=null,full="",started=false;
+      fetch(APEX_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:history.slice(-12)})}).then(function(res){
+        if(!res.ok||!res.body)throw new Error("bad");
+        var reader=res.body.getReader(),dec=new TextDecoder();
+        function pump(){return reader.read().then(function(r){
+          if(r.done){finish();return;}
+          full+=dec.decode(r.value,{stream:true});
+          if(!started){started=true;if(tb&&tb.parentNode)tb.remove();bubble=addMsg("","bot");}
+          var si=full.indexOf("[[");bubble.textContent=(si>-1?full.slice(0,si):full).trim();body.scrollTop=body.scrollHeight;
+          return pump();
+        });}
+        return pump();
+      }).catch(function(){if(tb&&tb.parentNode)tb.remove();respond(text);});
+      function finish(){
+        if(tb&&tb.parentNode)tb.remove();
+        var siA=full.indexOf("[["),siS=full.indexOf("[[SUGGEST]]");
+        var ans=(siA>-1?full.slice(0,siA):full).trim();
+        var sugg=siS>-1?full.slice(siS+11).split("|").map(function(s){return s.trim();}).filter(Boolean).slice(0,3):[];
+        if(!ans){respond(text);return;}
+        if(bubble)bubble.textContent=ans;else addMsg(ans,"bot");
+        history.push({role:"assistant",content:ans});
+        if(history.length>24)history=history.slice(-24);
+        showChips(sugg.length?sugg:starterChips);
+      }
+    }
+    function userSend(v){var text=(v!==undefined?v:input.value).trim();if(!text)return;addMsg(text,"user");input.value="";chipsBox.style.display="none";
+      if(APEX_ENDPOINT&&APEX_ENDPOINT.indexOf("http")===0){aiRespond(text);}else{respond(text);}
+    }
     function showChips(labels){chipsBox.innerHTML="";if(!labels||!labels.length){chipsBox.style.display="none";return;}chipsBox.style.display="flex";labels.forEach(function(c){var b=document.createElement("button");b.className="apex-chip";b.textContent=c;b.addEventListener("click",function(){userSend(c)});chipsBox.appendChild(b);});}
 
     function openPanel(){panel.classList.add("open");fab.classList.add("hidden");opened=true;tip.classList.remove("show");
-      body.innerHTML="";chipsBox.innerHTML="";chipsBox.style.display="none";lastId=null;input.value="";
+      body.innerHTML="";chipsBox.innerHTML="";chipsBox.style.display="none";lastId=null;input.value="";history=[];
       var tb=typingBubble();setTimeout(function(){tb.remove();addMsg(greetReply,"bot");showChips(starterChips);try{input.focus()}catch(e){}},reduce?0:650);}
     function closePanel(){panel.classList.remove("open");fab.classList.remove("hidden");}
 
