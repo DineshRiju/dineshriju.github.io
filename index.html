@@ -1604,7 +1604,7 @@
       setTimeout(function(){tb.remove();addMsg(reply,"bot");showChips(chips);},delay);
     }
 
-    var APEX_ENDPOINT="";  /* paste your Cloudflare Worker URL between the quotes to switch APEX to the AI brain, e.g. https://apex.yourname.workers.dev */
+    var APEX_ENDPOINT="https://apex.dinesh-riju53.workers.dev";  /* paste your Cloudflare Worker URL between the quotes to switch APEX to the AI brain, e.g. https://apex.yourname.workers.dev */
     var history=[];
     function aiRespond(text){
       history.push({role:"user",content:text});
