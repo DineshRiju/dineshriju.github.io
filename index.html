@@ -346,11 +346,11 @@
   footer{padding:34px 0;text-align:center;background:var(--ink);border-top:1px solid rgba(255,255,255,0.08)}
   footer p{font-size:13px;color:rgba(255,255,255,0.4)}
 
-  .to-top{position:fixed;right:22px;bottom:22px;width:46px;height:46px;border-radius:50%;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;z-index:200;opacity:0;pointer-events:none;transition:all .3s var(--ease);box-shadow:var(--shadow-m);cursor:pointer;border:none}
+  .to-top{position:fixed;left:22px;bottom:22px;width:46px;height:46px;border-radius:50%;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;z-index:200;opacity:0;pointer-events:none;transition:all .3s var(--ease);box-shadow:var(--shadow-m);cursor:pointer;border:none}
   .to-top.show{opacity:1;pointer-events:auto}
   .to-top:hover{transform:translateY(-3px)}
   .to-top svg{width:18px;height:18px}
-  @media (max-width:1000px){.to-top{right:16px;bottom:16px}}
+  @media (max-width:1000px){.to-top{left:16px;bottom:16px}}
 
   /* FAQ */
   .faq{margin-top:44px;max-width:860px;border-top:1px solid var(--line)}
@@ -509,6 +509,52 @@
   .cc-txt{display:flex;flex-direction:column;min-width:0}
   .cc-l{font-size:11px;font-weight:700;color:#b7bcff;letter-spacing:0.05em}
   .cc-v{font-size:14px;font-weight:500;color:#fff;margin-top:3px;word-break:break-word}
+
+  /* APEX F1 assistant */
+  .apex-fab{position:fixed;right:24px;bottom:24px;z-index:260;width:60px;height:60px;border-radius:50%;border:none;cursor:pointer;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 32px rgba(123,92,246,0.5);transition:transform .25s var(--ease),opacity .25s ease}
+  .apex-fab:hover{transform:translateY(-3px) scale(1.05)}
+  .apex-fab svg{width:26px;height:26px;position:relative;z-index:1}
+  .apex-fab::after{content:"";position:absolute;inset:-3px;border-radius:50%;border:2px solid rgba(123,92,246,0.55);animation:apexpulse 2.4s ease-out infinite}
+  @keyframes apexpulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.5);opacity:0}}
+  .apex-fab.hidden{opacity:0;pointer-events:none;transform:scale(0.5)}
+  .apex-tip{position:fixed;right:98px;bottom:40px;z-index:259;background:var(--ink);color:#fff;font-size:13px;font-weight:500;padding:10px 14px;border-radius:12px;box-shadow:var(--shadow-m);opacity:0;transform:translateX(10px);transition:opacity .4s ease,transform .4s ease;pointer-events:none;white-space:nowrap}
+  .apex-tip.show{opacity:1;transform:none}
+  .apex-tip::after{content:"";position:absolute;right:-6px;top:50%;transform:translateY(-50%);border:6px solid transparent;border-left-color:var(--ink)}
+  .apex-panel{position:fixed;right:24px;bottom:24px;z-index:270;width:392px;max-width:calc(100vw - 32px);height:600px;max-height:82vh;background:#15161d;border:1px solid rgba(255,255,255,0.1);border-radius:22px;box-shadow:0 30px 90px rgba(0,0,0,0.55);display:flex;flex-direction:column;overflow:hidden;opacity:0;transform:translateY(20px) scale(0.98);pointer-events:none;transition:opacity .3s var(--ease),transform .3s var(--ease)}
+  .apex-panel.open{opacity:1;transform:none;pointer-events:auto}
+  @media (max-width:480px){.apex-panel{right:8px;left:8px;bottom:8px;width:auto;height:80vh}}
+  .apex-head{position:relative;padding:16px 18px;background:var(--ink);border-bottom:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;gap:12px;overflow:hidden}
+  .apex-head::before{content:"";position:absolute;inset:0;background:var(--grad);opacity:.18}
+  .apex-head .ava{position:relative;width:40px;height:40px;border-radius:12px;background:var(--grad);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:15px;flex:0 0 auto;box-shadow:0 6px 18px rgba(123,92,246,0.45)}
+  .apex-head .ht{position:relative;flex:1;min-width:0}
+  .apex-head .ht .n{font-size:15px;font-weight:700;color:#fff;display:flex;align-items:center;gap:8px;letter-spacing:0.02em}
+  .apex-head .ht .n .dot{width:7px;height:7px;border-radius:50%;background:#5fe3a0;animation:apexlive 2s infinite}
+  @keyframes apexlive{0%{box-shadow:0 0 0 0 rgba(95,227,160,0.5)}70%{box-shadow:0 0 0 6px rgba(95,227,160,0)}100%{box-shadow:0 0 0 0 rgba(95,227,160,0)}}
+  .apex-head .ht .s{font-size:11.5px;color:rgba(255,255,255,0.62);margin-top:2px}
+  .apex-head .cls{position:relative;background:transparent;border:none;color:rgba(255,255,255,0.7);cursor:pointer;width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;transition:background .2s}
+  .apex-head .cls:hover{background:rgba(255,255,255,0.1);color:#fff}
+  .apex-head .cls svg{width:18px;height:18px}
+  .apex-body{flex:1;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:11px}
+  .apex-body::-webkit-scrollbar{width:6px}.apex-body::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.14);border-radius:6px}
+  .apex-msg{max-width:86%;font-size:13.5px;line-height:1.5;padding:11px 14px;border-radius:14px;animation:apexin .3s var(--ease)}
+  @keyframes apexin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .apex-msg.bot{align-self:flex-start;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.9);border-bottom-left-radius:5px}
+  .apex-msg.user{align-self:flex-end;background:var(--grad);color:#fff;border-bottom-right-radius:5px}
+  .apex-typing{align-self:flex-start;display:flex;gap:4px;padding:13px 15px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);border-radius:14px;border-bottom-left-radius:5px}
+  .apex-typing span{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.5);animation:apexdot 1.2s infinite}
+  .apex-typing span:nth-child(2){animation-delay:.2s}.apex-typing span:nth-child(3){animation-delay:.4s}
+  @keyframes apexdot{0%,60%,100%{opacity:.3;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
+  .apex-chips{padding:0 18px 12px;display:flex;flex-wrap:wrap;gap:7px}
+  .apex-chip{font-size:12px;font-weight:500;color:#c9caff;background:rgba(123,92,246,0.14);border:1px solid rgba(123,92,246,0.32);padding:7px 12px;border-radius:980px;cursor:pointer;transition:all .2s;font-family:inherit}
+  .apex-chip:hover{background:rgba(123,92,246,0.26);transform:translateY(-1px)}
+  .apex-foot{padding:12px 14px;border-top:1px solid rgba(255,255,255,0.08);display:flex;gap:8px;align-items:center;background:#15161d}
+  .apex-foot input{flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:11px 14px;color:#fff;font-size:13.5px;font-family:inherit;outline:none;transition:border-color .2s}
+  .apex-foot input:focus{border-color:var(--accent)}
+  .apex-foot input::placeholder{color:rgba(255,255,255,0.4)}
+  .apex-foot .snd{flex:0 0 auto;width:40px;height:40px;border-radius:11px;border:none;background:var(--grad);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .2s}
+  .apex-foot .snd:hover{transform:scale(1.06)}
+  .apex-foot .snd svg{width:18px;height:18px}
+  .apex-note{font-size:10px;color:rgba(255,255,255,0.32);text-align:center;padding:0 14px 10px;background:#15161d}
 
   @media (prefers-reduced-motion: reduce){
     *{animation:none !important;transition-duration:.001s !important}
@@ -1122,6 +1168,26 @@
 
 <button class="to-top" id="toTop" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></button>
 
+<!-- APEX F1 assistant -->
+<div class="apex-tip" id="apexTip">Ask APEX about Dinesh</div>
+<button class="apex-fab" id="apexFab" aria-label="Open APEX assistant">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><circle cx="8" cy="10" r="1.1" fill="currentColor" stroke="none"/><circle cx="12" cy="10" r="1.1" fill="currentColor" stroke="none"/><circle cx="16" cy="10" r="1.1" fill="currentColor" stroke="none"/></svg>
+</button>
+<div class="apex-panel" id="apexPanel" role="dialog" aria-label="APEX assistant">
+  <div class="apex-head">
+    <div class="ava">A</div>
+    <div class="ht"><div class="n">APEX <span class="dot"></span></div><div class="s">Dinesh's F1 inspired strategy assistant</div></div>
+    <button class="cls" id="apexClose" aria-label="Close assistant"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+  </div>
+  <div class="apex-body" id="apexBody"></div>
+  <div class="apex-chips" id="apexChips"></div>
+  <div class="apex-foot">
+    <input id="apexInput" type="text" placeholder="Ask about Dinesh's experience..." autocomplete="off">
+    <button class="snd" id="apexSend" aria-label="Send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+  </div>
+  <div class="apex-note">APEX answers from Dinesh's public profile. A guide, not the driver.</div>
+</div>
+
 <div class="lightbox" id="lightbox">
   <button class="lb-close" id="lbClose" aria-label="Close"></button>
   <div class="lightbox-inner"><img id="lbImg" src="" alt="Certificate"><div class="cap" id="lbCap"></div></div>
@@ -1297,6 +1363,152 @@
       }
     })},{threshold:0.35});
     io.observe(document.getElementById("cm2"));
+  })();
+
+  // APEX F1 assistant
+  (function(){
+    var fab=document.getElementById("apexFab"),panel=document.getElementById("apexPanel"),closeBtn=document.getElementById("apexClose"),
+        body=document.getElementById("apexBody"),input=document.getElementById("apexInput"),send=document.getElementById("apexSend"),
+        chipsBox=document.getElementById("apexChips"),tip=document.getElementById("apexTip");
+    if(!fab)return;
+    var opened=false,greeted=false,lastId=null;
+
+    var greetReply="Welcome to the pit wall. I am APEX, Dinesh's F1 inspired assistant. Ask me about his should cost work, negotiations, supplier management, leadership, career, or something interesting. Where shall we start?";
+    var starterChips=["Should cost models","Contract negotiation skills","AI tools I built","Supplier negotiations","Leadership","Something interesting"];
+    var fallback="I did not quite catch that lap. Try should cost, negotiations, contracts, leadership, career highlights, or something interesting. I have also noted your question for the pit wall so Dinesh can review it.";
+    var deflectPersonal="I stay on the professional racing line here, so anything personal is best asked of Dinesh directly through the Contact section. Meanwhile, I can tell you plenty about his sourcing, cost, and leadership track record.";
+    var deflectConf="That detail stays in the garage, like a team's setup sheet. I can speak to Dinesh's approach and the results he delivered, just not confidential specifics. Ask me about his should cost method or his negotiation wins.";
+
+    var KB=[
+      {id:"skillset",tags:["skill","skillset","expertise","strength","good at","capabilit","competenc","what can he do"],reply:"His core strengths: strategic sourcing, bottoms up should cost, supplier negotiations and contracts, demand and supply planning, capacity and Clear to Build, risk mitigation, and program management. He pairs the commercial with the technical, so he can hold a supplier to a number and a schedule at once."},
+      {id:"commodities",tags:["commodit","electronic","silicon","semiconductor","pcba","pcb","sensor","actuator","motor","harness","memory","flash","fpga","processor","microcontroller","components","what does he source","sic"],reply:"Dinesh sources the full electronics stack: PCBAs, PCBs, CCAs, and embedded die in PCB; processors, microcontrollers, SoCs and FPGAs, DRAM and flash; SiC power modules and ID-PAK; plus motors, actuators, sensors, and HV and LV harnesses. He reaches beyond electronics too, into machining, plastics, and batteries. Silicon is where he goes deepest."},
+      {id:"shouldcost",tags:["should cost","cost model","costing","teardown","bottoms up","cost breakdown","cost estimate"],reply:"Should cost is his signature lap. He builds models bottoms up, from raw material to finished good, so a part's true cost is known before a dollar is negotiated. On this site you can open a worked SiC power module model where the die alone drives about 45 percent of cost. He also built an agentic AI cost model that pulls live market data and updates the gap to a supplier quote in real time."},
+      {id:"planning",tags:["forecast","demand","planning","supply plan","capacity","clear to build","ramp","inventory","safety stock","buffer","demand and supply signal","supply signal","vendor signal","share forecast"],reply:"On planning, Dinesh builds demand and supply models to catch constraints early, sets safety stock and buffers, and owns Clear to Build so a line never waits on a missing part. He shares demand and supply signals with vendors so they can plan capacity and long lead buys ahead of need, and builds ramp models to hit weekly build rates."},
+      {id:"suppliermgmt",tags:["supplier management","on time delivery","supplier performance","manage supplier","line down","corrective action","otd"],reply:"He runs supplier management like a race team. QBR cadence, scorecard based corrective action, and a track record of lifting supplier on time delivery from 82 to 95 percent. When lines went down at contract manufacturers, he recovered supply within six weeks. Accountability, measured and relentless."},
+      {id:"ip",tags:["ip","intellectual property","ownership of ip","work product","invention","copyright","who owns"],reply:"On intellectual property, Dinesh negotiates the Ownership of Intellectual Property terms in the TOE. Technical work product and works of authorship developed for the buyer under a PO or SOW vest in the buyer, while each party's pre existing inventions and works stay with their owner, with licenses granted where needed. He also nails down third party and open source disclosure so nothing is a surprise later."},
+      {id:"liquidateddamages",tags:["liquidated damages","liquidated","non excusable delay","nonexcusable delay","excusable delay","late delivery penalty","delay damages"],reply:"On delay and Liquidated Damages, Dinesh works the Excusable and Non excusable Delay terms. For a Non excusable Delay the buyer can recover cover costs such as premium freight, out of sequence installation, and the price difference on substitute supply, and Liquidated Damages apply where actual damages are hard to quantify. He negotiates the trigger, the carve outs, and the recovery mechanics so the remedy holds up."},
+      {id:"forcemajeure",tags:["force majeure","act of god","unforeseeable event","excusable"],reply:"On Force Majeure, Dinesh negotiates a tightly scoped clause. Relief applies only to genuinely unforeseeable events outside a party's control, and it cannot excuse a default where the party can still perform, for example by supplying from another facility. Keeping the definition narrow protects continuity of supply."},
+      {id:"indemnity",tags:["indemnity","indemnif","hold harmless"],reply:"On Indemnity, Dinesh negotiates mutual defend, indemnify, and hold harmless obligations for third party claims such as bodily injury, property damage, IP infringement, environmental harm, and breach. He also negotiates the indemnification procedures, control of defense, settlement consent, and survival."},
+      {id:"warranty",tags:["warranty","warranties","warrant","defect coverage"],reply:"On Warranties, Dinesh negotiates product, service, and software warranties, including the warranty period, conformance to Specification, and the remedy for defects. He ties warranty scope to the Specifications and the Nonconformance process so a defective part is corrected, replaced, or credited without argument."},
+      {id:"nonconformance",tags:["nonconformance","non conformance","nonconforming","defective part","reject product"],reply:"On Nonconformance, Dinesh negotiates the notification, containment, and corrective action process. A supplier gives prompt written notice of a nonconforming condition with the affected part, quantity, and lot or serial data, and the buyer can return for credit, require correction or replacement, or cover from another source. It keeps quality escapes controlled."},
+      {id:"termination",tags:["termination","terminate","event of default","termination for cause","cancel order","default remedies"],reply:"On Termination, Dinesh negotiates Termination for Cause and the Events of Default, from failure to deliver to insolvency, along with the buyer's Remedies: cancellation, cover, rework, specific performance, transfer of title to work in progress and tooling, and Liquidated Damages for an Event of Default. He balances cure periods against protection."},
+      {id:"insurance",tags:["insurance","commercial general liability","product liability","workers compensation","cyber insurance","certificate of insurance"],reply:"On Insurance, Dinesh negotiates the required coverages, Commercial General Liability, Product Liability, Automobile, Errors and Omissions or Cyber, and Workers Compensation, plus certificates of insurance and how any self assured layer or deductible is handled. Risk properly backed."},
+      {id:"counterfeit",tags:["counterfeit","fraudulent part","fake component","original component manufacturer"],reply:"On Counterfeit Parts, Dinesh negotiates prevention and control. Parts that are used, refurbished, or reclaimed but sold as new, or that skipped the Original Component Manufacturer's full production and test flow, are prohibited, and suspected counterfeit items are impounded and reported. It protects integrity at the component level."},
+      {id:"exportitar",tags:["itar","ear","export control","import export","eccn","controlled items","export compliance"],reply:"On Import and Export, Dinesh negotiates compliance with ITAR and EAR, including the right ECCN and HTS classifications, authorizations, technical data control legends, and documentation for Controlled Items. These are critical terms for an aerospace supply base."},
+      {id:"changes",tags:["equitable adjustment","change notice","changes and claims","engineering change"],reply:"On Changes, Dinesh negotiates the Changes and Equitable Adjustments terms. When the buyer issues a Change Notice, price and schedule adjustments are limited to actual and reasonable non recurring expense, and the supplier uses best efforts to mitigate cost and avoid delay. He also negotiates product change and discontinuance notice and work movement approval."},
+      {id:"contracts",tags:["contract negotiation","contract","terms of engagement","toe","clause","agreement","contract review","realign terms","ppa","msa","tsa","loa","mou"],reply:"Dinesh negotiates the full Terms of Engagement, the TOE that governs the supplier relationship, alongside PPAs, POs, and SOWs. Working from that TOE language he negotiates across Ownership of Intellectual Property, Confidential and Proprietary Information, Tooling, Nonconformance, Warranties, Changes and Equitable Adjustments, Force Majeure and Excusable versus Non excusable Delay, Liquidated Damages, Termination for Cause and Events of Default, Remedies, Indemnity, Insurance, Counterfeit Parts, Import and Export under ITAR and EAR, and Disputes and Governing Law. He works on the merits, not boilerplate. Ask about any specific clause. Executed thresholds stay confidential."},
+      {id:"negotiation",tags:["negotiat","cost reduction","savings","reduce cost","repricing","commercial deal"],reply:"On negotiation, Dinesh converts a solid should cost model into pricing, terms, and signed agreements, and has delivered 8 percent year over year reductions with incumbents and 20 to 40 percent through resourcing. He negotiates from data, not opinion, which is how a supplier ends up agreeing to your number."},
+      {id:"leadership",tags:["leader","leadership","manage team","mentor","influence","ownership","individual contributor","people management"],reply:"Leadership for Dinesh is influence and ownership, not headcount. He aligns design, program, quality, and executives to land decisions with or without direct authority, once ran a startup supply chain as interim head reporting to the CEO and CFO, and mentors GSMs and SIEs. That makes him strong as a manager or as an individual contributor."},
+      {id:"crossfunc",tags:["cross functional","design review","program management","collaborat","stakeholder","dfx","manufacturability"],reply:"Dinesh works across the whole grid: Design, TPM, MPM, SQE, and SIE. Through design reviews he resolves manufacturability and DFx constraints before they reach the line, protecting schedule and part conformity. Sourcing is a team sport, and he takes every corner with the wider team."},
+      {id:"executive",tags:["executive","leadership update","exec","board update","present to leadership"],reply:"With executives, Dinesh turns complex supply and cost risk into clear, decision ready narratives, up to CEO and CFO level. He reframes hard situations so leadership can make the right call fast. Clarity at speed, which is the whole game at the front."},
+      {id:"career",tags:["career","promotion","progression","experience","roles","history","journey","nimble","weil","federal signal","past companies","work history"],reply:"The trajectory: Federal Signal, then Weil-McLain at SPX where he won the Silver Star Award, then Nimble Robotics where he rose from SCPM to Global Supply Manager and served as interim head of supply chain, and now Joby Aviation with two more promotions up to Group Manager. Three promotions in five years."},
+      {id:"awards",tags:["award","silver star","recognition","certification","certified","lean six sigma","green belt","education","degree","university"],reply:"On the board: the SPX Silver Star Award for exceptional contribution, and a Lean Six Sigma Green Belt earned with a 91 percent score. Academically, an M.S. in Industrial Engineering and a B.E. in Mechanical Engineering."},
+      {id:"tools",tags:["tools","software","systems","databricks","altium","power bi","tableau","qlik","cplex","enovia","dynamics","ironclad","smartsheet"],reply:"His garage: Microsoft Dynamics 365, Altium 365, Enovia 3DX, and Ironclad for sourcing and PLM; Databricks, Power BI, Tableau, Qlik Sense, and SQL for data; SiliconExpert, Z2Data, and IBM ILOG CPLEX for cost and optimization; Jira and Smartsheet for delivery."},
+      {id:"scorecards",tags:["scorecard","supplier score","score supplier","supplier scoring","supplier rating","measure supplier","supplier kpi","rate supplier"],reply:"Dinesh builds data driven supplier scorecards that track on time delivery, quality, responsiveness, cost, and risk. He runs objective QBRs off them and drives corrective action, so performance is managed by the numbers, not by anecdote. That discipline helped lift on time delivery from 82 to 95 percent."},
+      {id:"rfqautomation",tags:["rfq","procurement automation","automate rfq","order automation","npi automation","po automation","automate procurement","automate order"],reply:"For procurement automation, Dinesh has streamlined RFQ issuance and order creation during NPI, where volume and change are highest. Automating the repetitive steps cuts cycle time and manual error, and frees the team to focus on strategy, negotiation, and supplier relationships."},
+      {id:"lifecycle",tags:["lifecycle","life cycle","obsolescence","end of life","siliconexpert","component risk","last time buy","eol"],reply:"On component lifecycle, Dinesh runs obsolescence and end of life analysis with SiliconExpert to flag at risk parts early, catch last time buys, and line up alternates before a shortage forms. Proactive risk management, so a design is not caught out by a part going end of life late in the program."},
+      {id:"aiwork",tags:["ai","artificial intelligence","automation","automate","agentic","agent","machine learning","genai","llm","ai tool","ai model","ai cost","how do you use ai","ai workflow","ai enabled"],reply:"Dinesh treats AI as a force multiplier for sourcing, applied where it adds real value. He has built or applied it across a bottoms up should cost model on live market data, data driven supplier scorecards, demand and supply signals shared with vendors, contract review that uses supply chain data and feedback to realign terms and negotiation, procurement automation for RFQ and orders during NPI, and component lifecycle analysis with SiliconExpert. Practical tools that save time and sharpen decisions."},
+      {id:"availability",tags:["availab","sponsor","visa","permanent resident","relocat","travel","start date","how soon","join","location","based","fremont","notice"],reply:"Logistics are clean. Dinesh is a US Permanent Resident, so no sponsorship is needed. He is based in Fremont, California, open to relocation, comfortable with international and domestic travel including on short notice, and can start about two weeks after an offer."},
+      {id:"interesting",tags:["interesting","fun fact","unique","standout","stand out","impressive","cool","something about","remarkable","surprise"],reply:"Here is a good one. Dinesh built a should cost model powered by AI agents that factors live market data and estimates a product's cost from raw material to finished good in real time. Most supply chain leaders read cost models. He built one that thinks. Pair that with three promotions in five years and you get the pace he runs at."},
+      {id:"fit",tags:["why hire","fit","why you","why him","value","what makes","good fit","strong fit","should we hire"],reply:"Why Dinesh: silicon and constrained supply experience, Tier 1 contract manufacturing accountability, cost you can defend through should cost and an AI model on live data, and a record of building supply chains from zero while rising fast. He is built for hardware at the frontier."},
+      {id:"contact",tags:["contact","email","phone","call","linkedin","reach","get in touch","resume","connect","talk to","hire him"],reply:"Want the driver directly? Email dinesh.riju53@gmail.com, call +1 815 508 6616, or connect on LinkedIn. His resume is one click away on this site, and the Contact section at the bottom has every link."},
+      {id:"f1",tags:["formula 1","formula one","racing","red bull","pit wall","theme","why f1","checkered","apex"],reply:"Why the F1 theme? Supply chain at the frontier is a race: milliseconds of lead time, tenths of a percent on cost, and a team that must nail every pit stop. Dinesh runs his sourcing with that precision and pace, so a race engineer felt like the right voice. Now, what line shall we take next?"},
+      {id:"problemsolving",tags:["problem solving","problem solver","how do you solve","how does he solve","challenge","crisis","difficult situation","tough problem","obstacle","under pressure","approach problems","handle problems","firefight"],reply:"Problem solving is where Dinesh is at his best. He stays calm under pressure and breaks any problem into three levers: cost, risk, and schedule. When a critical part hit a 52 plus week lead time, he opened qualified sourcing paths and secured coverage with zero production interruptions. When lines went down at contract manufacturers, he recovered supply within six weeks. He leads with data, moves fast, and closes the loop."},
+      {id:"achievement",tags:["achievement","accomplishment","proudest","biggest win","best work","most proud","highlight","greatest","top result"],reply:"A few highlights he is proud of: a 3 year SiC power module PPA that delivered $17M in savings, lifting supplier on time delivery from 82 to 95 percent, standing up two US fulfillment centers on schedule, and building an agentic AI should cost model. Add three promotions in five years, and the pattern is clear."},
+      {id:"favoritedriver",tags:["favorite driver","favourite driver","favorite f1","favourite f1","f1 driver","which driver","favorite racer","best driver","who is your favorite","favorite formula","who does he like","verstappen","max"],reply:"Good question. Dinesh is a Max Verstappen fan. He admires the relentless precision, the racecraft, and the refusal to settle for second, which is honestly how he approaches sourcing too. Find every tenth, control the race, and deliver when it counts."},
+      {id:"overview",tags:["who is","overview","summary","tell me about","introduce","background","profile","who is he","tell me about him"],reply:"Dinesh Riju Rajamohan is a global supply chain leader with 7+ years across strategic sourcing, contract manufacturing, and supplier negotiations for complex hardware. He leads Joby Aviation's Electronics Global Supply Chain team, owns a $100M+ portfolio, and has earned three promotions in five years. A driver who keeps finding time on every lap."},
+      {id:"help",tags:["help","what can i ask","what can you do","options","menu","topics"],reply:"Here is the pit menu. Ask me about should cost models, supplier negotiations, contracts, forecasting and planning, supplier management, leadership, cross functional work, executive updates, career highlights, problem solving, tools, availability, or something interesting."}
+    ];
+
+    var follow={
+      overview:["Should cost models","Leadership","Career highlights"],
+      skillset:["Should cost models","AI tools I built","Problem solving"],
+      commodities:["Should cost models","Supplier management","Something interesting"],
+      shouldcost:["AI tools I built","Negotiation results","Problem solving"],
+      planning:["Supplier management","Problem solving","Should cost models"],
+      suppliermgmt:["Supplier negotiations","Problem solving","Cross functional work"],
+      negotiation:["Contract negotiation skills","Should cost models","Career highlights"],
+      contracts:["Liquidated damages","Indemnity","IP ownership"],
+      ip:["Warranties","Liquidated damages","Contract negotiation skills"],
+      liquidateddamages:["Force majeure","Termination for cause","Indemnity"],
+      forcemajeure:["Liquidated damages","Nonconformance","Contract negotiation skills"],
+      indemnity:["Insurance","Warranties","Liquidated damages"],
+      warranty:["Nonconformance","Indemnity","Contract negotiation skills"],
+      nonconformance:["Warranties","Supplier management","Contract negotiation skills"],
+      termination:["Liquidated damages","Force majeure","Contract negotiation skills"],
+      insurance:["Indemnity","Contract negotiation skills","Warranties"],
+      counterfeit:["Nonconformance","Export and ITAR","Contract negotiation skills"],
+      exportitar:["Counterfeit parts","Contract negotiation skills","Supplier management"],
+      changes:["Contract negotiation skills","Negotiation results","Supplier management"],
+      leadership:["Cross functional work","Executive updates","Problem solving"],
+      crossfunc:["Leadership","Executive updates","Supplier management"],
+      executive:["Leadership","Problem solving","Career highlights"],
+      career:["Awards","Why hire Dinesh","Something interesting"],
+      awards:["Career highlights","Why hire Dinesh","Something interesting"],
+      tools:["Skillset","AI tools I built","Something interesting"],
+      availability:["Why hire Dinesh","Contact","Career highlights"],
+      interesting:["Favorite F1 driver","AI tools I built","Why hire Dinesh"],
+      fit:["Career highlights","Problem solving","Contact"],
+      contact:["Why hire Dinesh","Career highlights","Something interesting"],
+      f1:["Favorite F1 driver","Something interesting","Why hire Dinesh"],
+      problemsolving:["Supplier management","Should cost models","Leadership"],
+      achievement:["Should cost models","Career highlights","Why hire Dinesh"],
+      favoritedriver:["Something interesting","Why hire Dinesh","Career highlights"],
+      aiwork:["Should cost models","Lifecycle analysis","Procurement automation"],
+      lifecycle:["Supplier management","Should cost models","AI tools I built"],
+      rfqautomation:["AI tools I built","Supplier negotiations","Should cost models"],
+      scorecards:["Supplier negotiations","Problem solving","AI tools I built"],
+      help:["Should cost models","Supplier negotiations","Leadership"]
+    };
+
+    function store(key,val){try{var a=JSON.parse(localStorage.getItem(key)||"[]");a.push(val);if(a.length>60)a=a.slice(-60);localStorage.setItem(key,JSON.stringify(a))}catch(e){}}
+    function norm(s){return (" "+s.toLowerCase().replace(/[^a-z0-9 ]/g," ")+" ").replace(/\s+/g," ")}
+    function hit(t,k){ if(k.indexOf(" ")>-1) return t.indexOf(k)>-1?2:0; if(k.length>=5) return t.indexOf(k)>-1?2:0; return t.indexOf(" "+k+" ")>-1?2:0; }
+
+    function classify(text){
+      var t=norm(text), words=t.trim().split(" ");
+      if(/\b(hi|hii|hey|hello|yo|howdy|greetings|good morning|good afternoon|good evening)\b/.test(t) && words.length<=3) return {type:"greet"};
+      if(/\b(thanks|thank you|thx|cheers|appreciate it|bye|goodbye|see you)\b/.test(t)) return {type:"thanks"};
+      if(/\b(age|how old|married|wife|husband|girlfriend|boyfriend|kids|children|family|religion|salary|current pay|dob|born|dating|single|personal life|home address)\b/.test(t)) return {type:"personal"};
+      if(/\b(confidential|proprietary|exact price|actual price|real number|how much does joby|joby pay|internal cost|under nda|secret)\b/.test(t)) return {type:"conf"};
+      var best=null,score=0;
+      KB.forEach(function(e){var s=0;e.tags.forEach(function(k){s+=hit(t,k)});if(s>score){score=s;best=e;}});
+      if(best&&score>0) return {type:"kb",entry:best};
+      return {type:"none",q:text};
+    }
+
+    function addMsg(text,who){var d=document.createElement("div");d.className="apex-msg "+who;d.textContent=text;body.appendChild(d);body.scrollTop=body.scrollHeight;return d;}
+    function typingBubble(){var d=document.createElement("div");d.className="apex-typing";d.innerHTML="<span></span><span></span><span></span>";body.appendChild(d);body.scrollTop=body.scrollHeight;return d;}
+
+    function respond(text){
+      var c=classify(text),reply,id=null,chips;
+      if(c.type==="greet"){reply=greetReply;chips=starterChips;}
+      else if(c.type==="thanks"){reply="Anytime. Green flag whenever you are ready for the next question, or reach Dinesh directly through the Contact section.";chips=["Something interesting","Why hire Dinesh","Contact"];}
+      else if(c.type==="personal"){reply=deflectPersonal;chips=["Skillset","Career highlights","Why hire Dinesh"];}
+      else if(c.type==="conf"){reply=deflectConf;chips=["Should cost models","Negotiation results","Leadership"];}
+      else if(c.type==="kb"){reply=c.entry.reply;id=c.entry.id;chips=follow[id]||starterChips;}
+      else {reply=fallback;chips=starterChips;store("apex_unanswered",{q:c.q,t:Date.now()});}
+      if(id&&id===lastId) reply="To recap, "+reply.charAt(0).toLowerCase()+reply.slice(1);
+      lastId=id;
+      store("apex_log",{q:text,id:id,t:Date.now()});
+      var tb=typingBubble(), delay=reduce?0:(520+Math.min(reply.length*7,900));
+      setTimeout(function(){tb.remove();addMsg(reply,"bot");showChips(chips);},delay);
+    }
+
+    function userSend(v){var text=(v!==undefined?v:input.value).trim();if(!text)return;addMsg(text,"user");input.value="";chipsBox.style.display="none";respond(text);}
+    function showChips(labels){chipsBox.innerHTML="";if(!labels||!labels.length){chipsBox.style.display="none";return;}chipsBox.style.display="flex";labels.forEach(function(c){var b=document.createElement("button");b.className="apex-chip";b.textContent=c;b.addEventListener("click",function(){userSend(c)});chipsBox.appendChild(b);});}
+
+    function openPanel(){panel.classList.add("open");fab.classList.add("hidden");opened=true;tip.classList.remove("show");
+      body.innerHTML="";chipsBox.innerHTML="";chipsBox.style.display="none";lastId=null;input.value="";
+      var tb=typingBubble();setTimeout(function(){tb.remove();addMsg(greetReply,"bot");showChips(starterChips);try{input.focus()}catch(e){}},reduce?0:650);}
+    function closePanel(){panel.classList.remove("open");fab.classList.remove("hidden");}
+
+    fab.addEventListener("click",openPanel);
+    closeBtn.addEventListener("click",closePanel);
+    send.addEventListener("click",function(){userSend()});
+    input.addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();userSend();}});
+    document.addEventListener("keydown",function(e){if(e.key==="Escape"&&panel.classList.contains("open"))closePanel();});
+    if(!reduce) setTimeout(function(){if(!opened){tip.classList.add("show");setTimeout(function(){tip.classList.remove("show")},6000);}},3500);
   })();
 
   onScroll();
